@@ -1,7 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+
+/* styles.css */
+.custom-alert .swal2-title {
+  color: white !important;
+}
+
+.custom-alert .swal2-content {
+  color: white !important;
+}
+
+custom-alert .swal2-text{
+  color: white !important;
+
+}custom-alert {
+  color: white !important;
+
+}
+
+*{
+background-color: black;
+
+}
  :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
