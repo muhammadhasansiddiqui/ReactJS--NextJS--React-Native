@@ -10,17 +10,19 @@ function UseState() {
   const [editValue, setEditValue] = useState("");
 
   return (
-    <div className=" justify-center pt-10">
-      {/* <h1>Todo App</h1> */}
+    <div className="flex flex-col items-center  justify-center pt-10 ">
+      <h1>Todo App</h1>
+      <br />
 
       <input
+      className="px-2 py-1 m-2 bg-red-100 border-gray-900 rounded-md "
         placeholder="Enter Todo"
         type="text"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
       />
       <button
-        className="border-gray-900 px-2 py-1 m-2 rounded-md bg-green-400 "
+        className="px-2 py-1 m-2 bg-green-400 border-gray-900 rounded-md "
         onClick={() => {
           if (todo.trim() === "") {
             alert("Please enter a todo");
@@ -34,12 +36,12 @@ function UseState() {
         Add Todo
       </button>
 
-      <ul>
+      <ul className="flex flex-col items-center  justify-center pt-1 bg-yellow-200 rounded-md  " >
         {todos.map((item, index) => (
-          <li key={index}>
+          <li  className=" p-1 font-serif font- text-gray-800" key={index}>
             {item}
             <button
-              className="border-gray-900 px-2  m-5 py-1 rounded-md bg-red-300 "
+              className="px-2 py-1 m-5 bg-red-300 border-gray-900 rounded-md "
               onClick={() => {
                 const newTodos = [...todos];
                 newTodos.splice(index, 1);
@@ -49,7 +51,7 @@ function UseState() {
               Delete
             </button>
             <button
-              className="border-gray-900 px-2 py-1 m-2 rounded-md bg-sky-400 "
+              className="px-2 py-1 m-2 border-gray-900 rounded-md bg-sky-400 "
               onClick={() => {
                 setEditIndex(index);
                 setEditValue(item);
@@ -58,11 +60,14 @@ function UseState() {
               Edit
             </button>
           </li>
+
+          
         ))}
+     
       </ul>
 
       {editIndex !== null && (
-        <div>
+        <div >
           <input
             placeholder="Edit Todo"
             type="text"
@@ -70,7 +75,7 @@ function UseState() {
             onChange={(e) => setEditValue(e.target.value)}
           />
           <button
-            className="border-gray-900 px-2 py-1 m-2 rounded-md bg-green-400 "
+            className="px-2 py-1 m-2 bg-green-400 border-gray-900 rounded-md "
             onClick={() => {
               const newTodos = [...todos];
               newTodos[editIndex] = editValue;
