@@ -15,6 +15,7 @@ function UseEffect() {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((res) => {
+        console.log("🚀 ~ .then ~ res:", res);
         console.log("res->", res);
         setProducts(res);
       });
