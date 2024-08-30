@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-const  {todos, setTodos} = useState([]);
-const [newTodo, setNewTodo] = useState(""); 
+
 
 function App() {
   
