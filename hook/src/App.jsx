@@ -1,38 +1,33 @@
 import { useState } from "react";
 
+const  {todos, setTodos} = useState([]);
+const [newTodo, setNewTodo] = useState(""); 
+
 function App() {
-  const [value, setValue] = useState("");
-  const [todos, setTodos] = useState(["test1", "test2"]);
+  
 
   return (
     <div className="max-w-md p-4 mx-auto">
-      <h1 className="mb-4 text-3xl font-bold text-fuchsia-600">Todos</h1>
+<h1 className="px-4 py-2 mr-2 font-semibold text-pink-500  rounded text-lg ">Todos</h1>
+<div>
 
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        className="w-full px-3 py-2 mb-2 border rounded"
-        placeholder="Enter a todo"
-      />
+<input type="text"
+placeholder="Add todo" value={newTodo} className= "border border-gray-400 rounded-md px-4 py-2 mr-2" />
+<button className="px-4 py-2 mr-2 font-semibold text-white bg-pink-500 rounded" 
+onChange={(e) => {
+  setTodos([...todos, newTodo]);
+  setNewTodo("");
+}}
+>Add</button>
 
-      <button
-        onClick={() => {
-          setTodos([...todos, value]);
-          setValue("");
-        }}
-        className="w-full px-4 py-2 mb-4 font-semibold text-white rounded bg-fuchsia-600 hover:bg-fuchsia-700"
-      >
-        Add
-      </button>
+<div>
+<ul></ul>
 
-      <ul className="pl-5 list-disc">
-        {todos.map((v, i) => (
-          <li key={i} className="mb-1 text-lg">
-            {v}
-          </li>
-        ))}
-      </ul>
+</div>
+
+</div>
+      
+     
     </div>
   );
 }
