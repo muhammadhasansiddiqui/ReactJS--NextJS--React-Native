@@ -1,25 +1,36 @@
 import { useState } from "react";
 
 function App() {
-  const [name, setName] = useState("Hasan");
+  const [value, setValue] = useState("");
+  const [todos, setTodos] = useState(["test 1", "test2"]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="bg-yellow-300 mb-4 px-4 py-2">{name}</h1>
-      
+    <div className="bg-orange-400 min-h-screen flex flex-col items-center justify-center">
+      <h2 className="text-2xl mb-4 font-bold">Todos</h2>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+
       <button
-        onClick={() => setName("Bahi")}
-        className="px-4 py-2 mb-2 bg-blue-500 text-white rounded"
+        onClick={() => {
+          setTodos([...todos, value]);
+          setValue("");
+        }}
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
-        Update
+        ADD Todos
       </button>
-      
-      <button
-        onClick={() => setName("Hasan")}
-        className="px-4 py-2 bg-red-500 text-white rounded"
-      >
-        RE TURN
-      </button>
+      <ul className="mb-4 w-full">
+        {todos.map((v, i) => (
+          <li className="font-bold text-center mb-2" key={i}>
+            {v}
+
+          
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
