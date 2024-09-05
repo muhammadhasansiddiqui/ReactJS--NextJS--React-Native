@@ -1,9 +1,18 @@
-function home(){
+import { useContext } from "react";
+import { ThemeContext } from "./Contract/ThemeCon";
 
-return(
 
-    <h1>THis is  home page </h1>
-)
+function Home() {
+    const theme = useContext(ThemeContext);
+    console.log("🚀 ~ Home ~ theme:", theme);
+    
+  
 
+  return (
+    <div>
+      <h1>This is the home page</h1>
+    </div>
+  );
 }
-export default home
+
+export default Home;

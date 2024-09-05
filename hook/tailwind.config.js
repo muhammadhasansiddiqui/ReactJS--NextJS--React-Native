@@ -3,11 +3,12 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js", // Add this line to include Flowbite components
   ],
-  
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin'), // Add Flowbite as a plugin
+  ],
 }
-
