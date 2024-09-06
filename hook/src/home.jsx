@@ -10,7 +10,10 @@ function Home() {
 
   return (
     <div>
-      <h1>This is the home page</h1>
+      <h1
+      className="flex justify-center items-center h-screen bg-yellow-200
+text-red-600 text-4xl font-bold"
+      >This is the home page</h1>
     </div>
   );
 }

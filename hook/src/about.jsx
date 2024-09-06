@@ -9,7 +9,11 @@ function about(){
     
     return(
     
-        <h1>THis is  about page </h1>
+<h1 className="flex justify-center items-center h-screen bg-yellow-200
+text-red-600 text-4xl font-bold
+">
+  This is about page
+</h1>
     )
     
     }
