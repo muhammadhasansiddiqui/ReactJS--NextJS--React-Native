@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { ThemeContext } from "./Contract/ThemeCon";
+import { ThemeContext } from "./Context/ThemeContext";
 
 
 function about(){
@@ -9,11 +9,13 @@ function about(){
     
     return(
     
-<h1 className="flex justify-center items-center h-screen bg-yellow-200
+    <div className="flex justify-center items-center h-screen bg-yellow-200" >
+<h1 className="
 text-red-600 text-4xl font-bold
 ">
   This is about page
 </h1>
+</div>
     )
     
     }

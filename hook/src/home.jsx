@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ThemeContext } from "./Contract/ThemeCon";
+import { ThemeContext } from "./Context/ThemeContext";
 
 
 function Home() {
