@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ThemeContext } from "./Context/ThemeContext";
 
 
-function about(){
+function Services(){
    
     
     return(
@@ -12,10 +12,10 @@ function about(){
 <h1 className="
 text-red-600 text-4xl font-bold
 ">
-  This is about page
+  This is Services page
 </h1>
 </div>
     )
     
     }
-    export default about
+    export default Services
