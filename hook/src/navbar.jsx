@@ -28,18 +28,21 @@ function Header() {
             </span>
           </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button 
-  className={`
-    ${theme === "light" ? "bg-gray-600 text-white hover:bg-gray-200 hover:text-black" : "bg-gray-600 text-white hover:bg-gray-500 hover:text-white"}
+            <button
+              className={`
+    ${
+      theme === "light"
+        ? "bg-gray-600 text-white hover:bg-gray-200 hover:text-black"
+        : "bg-gray-600 text-white hover:bg-gray-500 hover:text-white"
+    }
     font-bold py-2 px-4 rounded-lg border-b-2 transition duration-300 ease-in-out
   `}
-  onClick={() => {
-    setTheme(theme === "light" ? "dark" : "light");
-  }}
->
-  {theme === "light" ? "Dark" : "Light"}
-</button>
-
+              onClick={() => {
+                setTheme(theme === "light" ? "dark" : "light");
+              }}
+            >
+              {theme === "light" ? "Dark" : "Light"}
+            </button>
 
             <button
               data-collapse-toggle="navbar-cta"
@@ -70,51 +73,66 @@ function Header() {
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-cta"
           >
-          <ul className={`flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 
-              rounded-lg ${theme === "light" ? "bg-white text-black" : " text-white"} 
-              md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0`}>
-  <li>
-    <Link
-      to="./"
-      className={`block py-2 px-3 md:p-0 rounded 
+            <ul
+              className={`flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 
+              rounded-lg ${
+                theme === "light" ? "bg-white text-black" : " text-white"
+              } 
+              md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0`}
+            >
+              <li>
+                <Link
+                  to="./"
+                  className={`block py-2 px-3 md:p-0 rounded 
                  ${theme === "light" ? "text-yellow-500 " : "text-yellow-500 "}
                  hover:bg-yellow-500 hover:text-white md:hover:bg-transparent md:hover:text-yellow-500 dark:hover:text-yellow-500`}
-    >
-      Home
-    </Link>
-  </li>
-  <li>
-    <Link
-      to="./about"
-      className={`block py-2 px-3 md:p-0 rounded 
-                 ${theme === "light" ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-gray-700"}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="./about"
+                  className={`block py-2 px-3 md:p-0 rounded 
+                 ${
+                   theme === "light"
+                     ? "text-gray-900 hover:bg-gray-100"
+                     : "text-white hover:bg-gray-700"
+                 }
                  md:hover:bg-transparent md:hover:text-yellow-500 dark:hover:text-yellow-500`}
-    >
-      About
-    </Link>
-  </li>
-  <li>
-    <Link
-      to="./services"
-      className={`block py-2 px-3 md:p-0 rounded 
-                 ${theme === "light" ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-gray-700"}
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="./services"
+                  className={`block py-2 px-3 md:p-0 rounded 
+                 ${
+                   theme === "light"
+                     ? "text-gray-900 hover:bg-gray-100"
+                     : "text-white hover:bg-gray-700"
+                 }
                  md:hover:bg-transparent md:hover:text-yellow-500 dark:hover:text-yellow-500`}
-    >
-      Services
-    </Link>
-  </li>
-  <li>
-    <Link
-      to="./contact"
-      className={`block py-2 px-3 md:p-0 rounded 
-                 ${theme === "light" ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-gray-700"}
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="./contact"
+                  className={`block py-2 px-3 md:p-0 rounded 
+                 ${
+                   theme === "light"
+                     ? "text-gray-900 hover:bg-gray-100"
+                     : "text-white hover:bg-gray-700"
+                 }
                  md:hover:bg-transparent md:hover:text-yellow-500 dark:hover:text-yellow-500`}
-    >
-      Contact
-    </Link>
-  </li>
-</ul>
-
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
