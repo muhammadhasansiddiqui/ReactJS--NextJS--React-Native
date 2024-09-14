@@ -1,10 +1,31 @@
 import "flowbite";
 import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
+
 import { Link, useNavigate } from "react-router-dom";
-import { ThemeContext } from "./Context/ThemeContext";
+import Button from "./components/Button";
+import { UserContext } from "./Context/UserContext";
+import { signOut } from "firebase/auth";
+import { auth } from "./utils/firebase";
+
+
+
 function Header() {
+
+const {user} = useContext
+
   const { theme, setTheme } = useContext(ThemeContext);
   console.log("theme in header=>", theme);
+  console.log("user in header=>", user);
+  const navigate = useNavigate();
+
+  const goToHomePage = () => navigate("/");
+
+  const handleSignOut = async () => {
+    await signOut(auth);
+    navigate("/");
+  };
+
 
   return (
     <header>
@@ -131,6 +152,20 @@ function Header() {
                 >
                   Contact
                 </Link>
+
+                {user?.isLogin ? (
+            <div className="flex items-center">
+              <Link to={"/profile"}>
+                <h1 className="mx-2">{user.username}</h1>
+              </Link>
+              <Button text={"SignOut"} onClick={handleSignOut} />
+            </div>
+          ) : (
+            <Link to="/signin" className="mr-5 hover:text-gray-900">
+              Login
+            </Link>
+          )}
+
               </li>
             </ul>
           </div>

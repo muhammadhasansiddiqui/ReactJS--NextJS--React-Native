@@ -1,68 +1,100 @@
-import { useEffect, useState } from 'react';
-import './index.css';
+import { useEffect, useState } from "react";
 
 function Weather() {
-  const [currentWeather, setCurrentWeather] = useState({});
-  const [city, setCity] = useState('');
+  const [currentWeather, setCurrentWeather] = useState({
+    weather: [],
+  });
+  const [city, setCity] = useState("");
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
   useEffect(() => {
-    if (city) {
-      getWeather();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
+          getWeatherByCoordinates(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
     }
-  }, [city]);
+  }, []);
 
-  const getWeather = () => {
+  const getWeatherByCoordinates = (lat, lon) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=1f136667cfcdb418bf8b7a4c5a542f00`
     )
       .then((res) => res.json())
       .then((res) => {
         setCurrentWeather(res);
-        console.log("🚀 ~ .then ~ res:", res);
+        setCity(res.name); 
       })
       .catch((error) => {
         console.error("Error fetching weather data:", error);
       });
   };
 
-  const temp = currentWeather.main?.temp - 273.15;
-  const feels_like = currentWeather.main?.feels_like - 273.15;
-  const temp_min = currentWeather.main?.temp_min - 273.15;
-  const temp_max = currentWeather.main?.temp_max - 273.15;
-  const pressure = currentWeather.main?.pressure;
-  const humidity = currentWeather.main?.humidity;
-  const sea_level = currentWeather.main?.sea_level;
+  const getWeather = () => {
+    if (city) {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1f136667cfcdb418bf8b7a4c5a542f00`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setCurrentWeather(res);
+        })
+        .catch((error) => {
+          console.error("Error fetching weather data:", error);
+        });
+    }
+  };
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8">Weather App</h1>
-      <input
-        type="text"
-        value={city}
-        placeholder="Enter city name"
-        className="p-2 border border-gray-300 rounded mb-4"
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <button
-        onClick={getWeather}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-      >
-        Get Weather
-      </button>
-      {city && (
-        <div className="mt-8 bg-white p-6 rounded shadow-md w-96">
-          <h2 className="text-2xl font-semibold mb-4">Current Weather in {city}</h2>
-          <p className="mb-2">Temperature: {temp?.toFixed(2)}°C</p>
-          <p className="mb-2">Feels Like: {feels_like?.toFixed(2)}°C</p>
-          <p className="mb-2">Minimum Temperature: {temp_min?.toFixed(2)}°C</p>
-          <p className="mb-2">Maximum Temperature: {temp_max?.toFixed(2)}°C</p>
-          <p className="mb-2">Pressure: {pressure} hPa</p>
-          <p className="mb-2">Humidity: {humidity}%</p>
-          <p className="mb-2">Sea Level: {sea_level} hPa</p>
-        </div>
-      )}
-    </div>
-  );
+  const temp = Math.round(currentWeather?.main?.temp - 273.15);
+  const feelsLike = Math.round(currentWeather?.main?.feels_like - 273.15);
+  const weatherCondition = currentWeather?.weather
+    ? currentWeather?.weather[0]?.main
+    : "";
+
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="mb-8 text-4xl font-bold">Weather App</h1>
+        <input
+          type="text"
+          value={city}
+          placeholder="Enter city name"
+          className="p-2 mb-4 border border-gray-300 rounded"
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <button
+          onClick={getWeather}
+          className="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded hover:bg-blue-600"
+        >
+          Get Weather
+        </button>
+    
+        {city && currentWeather.main && (
+          <div className="p-6 mt-8 bg-white rounded shadow-md w-96">
+            <div className="flex justify-between">
+              <h1 className="text-lg font-semibold">Temperature</h1>
+              <h1 className="text-lg font-semibold">{temp}°C</h1>
+            </div>
+            <div className="flex justify-between">
+              <h1 className="text-lg font-semibold">Feels Like</h1>
+              <h1 className="text-lg font-semibold">{feelsLike}°C</h1>
+            </div>
+            <div className="flex justify-between">
+              <h1 className="text-lg font-semibold">Weather</h1>
+              <h1 className="text-lg font-semibold">{weatherCondition}</h1>
+            </div>
+          </div>
+        )}
+      </div>
+    );  
 }
 
 export default Weather;
