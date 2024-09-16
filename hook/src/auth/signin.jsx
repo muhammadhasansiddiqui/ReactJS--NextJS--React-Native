@@ -16,9 +16,12 @@ function SignIn() {
       setLoading(true);
       console.log(email, password);
       const user = await signInWithEmailAndPassword(auth, email, password);
+      console.log("🚀 ~ handleSignIn ~ user:", user);
       navigate("/");
       setLoading(false);
+      
     } catch (err) {
+      console.log("🚀 ~ handleSignIn ~ err:", err);
       setLoading(false);
     }
   };
