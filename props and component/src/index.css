@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 
-/* styles.css */
+
+
 .custom-alert .swal2-title {
   color: white !important;
 }
