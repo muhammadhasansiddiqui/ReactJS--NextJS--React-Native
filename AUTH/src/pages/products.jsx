@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Canvas } from '@react-three/fiber'
+import { Switch } from 'r3dy'
+import ProductsCard from '../componetes/productsCard'
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -20,7 +24,7 @@ const Products = () => {
   }, []);
 
   return (
-    <div className="container px-5 py-24 mx-auto">
+    <div className="container mx-auto">
       {loading ? (
         <div role="status" className="flex items-center justify-center h-screen">
           <svg
@@ -42,27 +46,9 @@ const Products = () => {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div className="flex flex-wrap -m-4">
+        <div className="flex flex-wrap m-4">
           {products.map((product) => (
-            <div key={product.id} className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-50 rounded overflow-hidden shadow-md bg-red-300">
-                {/* Image */}
-                <img
-                  alt={product.name}
-                  className="object-cover object-center w-full h-full block"
-                  src={product.images || "https://via.placeholder.com/420x260"}
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  {product.category}
-                </h3>
-                <h2 className="text-white title-font text-lg font-medium">
-                  {product.name}
-                </h2>
-                <p className="mt-1">${product.price}</p>
-              </div>
-            </div>
+            <ProductsCard product={product} key={product.id} />
           ))}
         </div>
       )}
