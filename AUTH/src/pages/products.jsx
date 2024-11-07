@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { Canvas } from '@react-three/fiber'
 import { Switch } from 'r3dy'
 import ProductsCard from '../componetes/productsCard'
+import CategoryChip from "../componetes/categoryChip";
 
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [categories, setcategories] = useState([]);
+   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -22,6 +24,22 @@ const Products = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://dummyjson.com/products/categories")
+      .then((res) => {
+        console.log(res.data); // Check the full response
+        setProducts(res.data.products);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  }, []);
+
+  
 
   return (
     <div className="container mx-auto">
@@ -46,11 +64,23 @@ const Products = () => {
           <span className="sr-only">Loading...</span>
         </div>
       ) : (
-        <div className="flex flex-wrap m-4">
+
+    <div>
+
+<div className="flex flex-wrap">
+{categories.map((category)=> 
+<CategoryChip  key={category.slug} /> )}  
+</div>
+
+
+      <div className="flex flex-wrap m-4">
           {products.map((product) => (
             <ProductsCard product={product} key={product.id} />
           ))}
         </div>
+    </div>
+        
+        
       )}
     </div>
   );
