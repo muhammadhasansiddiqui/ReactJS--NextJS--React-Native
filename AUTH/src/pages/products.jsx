@@ -8,7 +8,7 @@ import CategoryChip from "../componetes/categoryChip";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setcategories] = useState([]);
+  const [categories, setCategories] = useState([]);
    const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const Products = () => {
     axios
       .get("https://dummyjson.com/products/categories")
       .then((res) => {
-        console.log(res.data); // Check the full response
-        setProducts(res.data.products);
+        console.log("categories DATA ===>",res.data); // Check the full response
+        setCategories(res.data);
         setLoading(false);
       })
       .catch((err) => {

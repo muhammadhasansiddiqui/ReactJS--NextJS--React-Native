@@ -19,6 +19,7 @@
     "r3dy": "^1.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-horizontal-scrolling-menu": "^8.2.0",
     "react-router-dom": "^6.27.0",
     "sweetalert2": "^11.14.0",
     "three": "^0.170.0"
