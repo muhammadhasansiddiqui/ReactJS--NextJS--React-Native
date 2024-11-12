@@ -10,10 +10,16 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
    const [loading, setLoading] = useState(true);
+   const [chosenCategory, setChosenCategory] =useState("All")
 
   useEffect(() => {
+    console.log("🚀 ~ useEffect is called",);
+    const url = chosenCategory === "All" ? 
+    'https://dummyjson.com/products' : 
+    `https://dummyjson.com/products/category/${chosenCategory}`
+    
     axios
-      .get("https://dummyjson.com/products")
+      .get(url)
       .then((res) => {
         console.log(res.data); // Check the full response
         setProducts(res.data.products);
@@ -23,7 +29,7 @@ const Products = () => {
         setLoading(false);
         console.log(err);
       });
-  }, []);
+  }, [chosenCategory]);
 
   useEffect(() => {
     axios
@@ -67,9 +73,24 @@ const Products = () => {
 
     <div>
 
-<div className="flex flex-wrap">
+<div className="flex gap-3 flex-wrap">
+
+
+<CategoryChip
+  isChosen={chosenCategory === "All"}
+category={{
+  slug:"All",
+  name:"All"
+}}  />
+
+
+
 {categories.map((category)=> 
-<CategoryChip  key={category.slug} /> )}  
+<CategoryChip
+  onClick={()=>  setChosenCategory(category.slug)
+  }
+  isChosen={category.slug === chosenCategory}
+  category={category} key={category.slug} /> )}  
 </div>
 
 

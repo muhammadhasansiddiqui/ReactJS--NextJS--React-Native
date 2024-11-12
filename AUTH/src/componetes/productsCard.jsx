@@ -1,5 +1,5 @@
 const ProductsCard = ({ product }) => {
-  console.log("🚀 ~ ProductsCard ~ product:", product);
+  // console.log("🚀 ~ ProductsCard ~ product:", product);
 
   return (
     <div className="w-full shadow p-9 lg:w-1/4 md:w-1/2">
