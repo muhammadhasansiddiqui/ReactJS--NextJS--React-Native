@@ -14,6 +14,7 @@ const Products = () => {
 
   useEffect(() => {
     console.log("🚀 ~ useEffect is called",);
+    
     const url = chosenCategory === "All" ? 
     'https://dummyjson.com/products' : 
     `https://dummyjson.com/products/category/${chosenCategory}`
